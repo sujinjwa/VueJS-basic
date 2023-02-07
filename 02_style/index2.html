@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="state">안녕하세요</p>
+        <p v-else>고맙습니다</p>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    state: '', // false
+                }
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>

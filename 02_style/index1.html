@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <style>
+        #app {
+            border: 2px solid red;
+            display: flex;
+        }
+        .text {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border: 2px solid black;
+        }
+        .red {
+            border: 2px solid red;
+        }
+        .green {
+            border: 2px solid green;
+        }
+        .blue {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p class="text" v-on:click="changeColor($event, 'red')">첫번째 글입니다.</p>
+        <p class="text" v-on:click="changeColor($event, 'green')">첫번째 글입니다.</p>
+        <p class="text" v-on:click="changeColor($event, 'blue')">첫번째 글입니다.</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    text1: false,
+                    text2: false,
+                    text3: false,
+                }
+            },
+
+            methods: {
+                changeColor(event, color) {
+                    event.target.classList.toggle(color);
+                    // console.log(event.target)
+
+                    // if (color === 'red') this.text1 = true;
+                    // if (color === 'green') this.text2 = true;
+                    // if (color === 'blue') this.text3 = true;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>

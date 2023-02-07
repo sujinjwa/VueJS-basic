@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<style>
+    /* .calrory-div  {
+        display: none;
+    } */
+
+    /* .show {
+        display: block;
+    } */
+</style>
+<body>
+    <div id="app">
+        <h1>칼로리 관리</h1>
+        <input type="text" placeholder="섭취한 칼로리를 입력하세요" v-model="calrory" />
+        <button @click="inputCalrory()">입력</button>
+        <p v-if="myKcal.length === 0">아직 입력하지 않았습니다.</p>
+        
+        <div v-else class="calrory-div">
+            <h2>칼로리 기록</h2>
+            <ul>
+                <li v-for="(item, index) in myKcal" :key="item.date">
+                    {{ item.date }} : {{ item.calrory + 'kcal' }}
+                    <a href="" @click.prevent="del(index)">삭제</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    calrory: 0,
+                    myKcal: [
+                        { date: '2022-11-12', calrory: 1790 },
+                        { date: '2022-11-13', calrory: 1800 },
+                        { date: '2022-11-14', calrory: 1620 },
+                    ],
+                };
+            },
+
+            methods: {
+                inputCalrory() {
+                    // let calroryDiv = document.querySelector('.calrory-div');
+                    // calroryDiv.classList.add('show');
+
+                    const year = new Date().getFullYear();
+                    const month = new Date().getMonth() + 1;
+                    const date = new Date().getDate();
+
+                    const totalDate = `${year}-${month}-${date}`;
+
+                    // this.myKcal = [{date: totalDate, calrory: this.calrory}]
+                    this.myKcal.push({date: totalDate, calrory: this.calrory});
+                
+                    this.calrory = ''; // 입력 후 input.value 지우기
+                },
+
+                del(index) {
+                    this.myKcal.splice(index, 1);
+                }
+            },
+        });
+        app.mount('#app');
+    </script>
+</body>
+</html>
