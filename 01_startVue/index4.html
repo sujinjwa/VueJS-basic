@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <button v-on:click="decreaseNum">감소</button> -->
+        <button @:click="decreaseNum($event, num)">감소</button>
+        <button @:click="(event) => increaseNum(num, event)">증가</button>
+        <div @:click="increaseNum(20, event)">
+            <p @:click.stop="some">결과: {{ number }}</p>
+        </div>
+        <p>결과: {{ number }}</p>
+        
+        <br><br><br><br>
+        <input type="text" v-on:keyup.enter="setName($event)">
+        <p> {{ name }} </p>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    num: 10,
+                    number: 0,
+                    name: '',
+                }
+            },
+
+            methods: {
+                setName(event) {
+                    this.name = event.target.value;
+                },
+
+                some() {
+                    console.log('some');
+                },
+
+                decreaseNum(ev, num) {
+                    this.number -= num;
+                    console.log(ev.target);
+                },
+
+                increaseNum(num, event) {
+                    this.number += num;
+                    console.log(event.target);
+                },
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

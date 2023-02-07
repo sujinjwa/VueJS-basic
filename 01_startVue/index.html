@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>저는 {{ age }}살입니다.</h1>
+        <input type="text" v-model="age">
+        <p> {{ aboutMe }} </p>
+        <h2> 저는 {{ age >= 20 ? '성인' : '미성년자' }}입니다.</h2>
+        <p v-bind:[att]="text">{{ aboutMe }}</p>
+        <p 
+            :[att]="text">
+            id=""
+            class="eulsoo"
+            style="eulsoo"
+        </p>
+        <button v-bind:disabled="disabled" v-on:click="addAge">나이 증가</button>
+        <a href="" v-on:click.prevent="addAge">나이 증가</a>
+        <div v-html="content"></div>
+    </div>
+    <script>
+        const instance = Vue.createApp({
+            // data: function () {
+            //     return {} // data 프로퍼티는 객체를 리턴하기로 약속되어짐
+            // }
+            data() {
+                return {
+                    disabled: false,
+                    age: 30,
+                    text: '오늘은 흐린 날씨다',
+                    att: 'title',
+                    content: '<strong>하하</strong>',
+                    속성객체: {
+                        id: 'eulsoo',
+                        class: 'eulsoo',
+                        style: 'color: yellow'
+                },
+                여부: true,
+                age: 32,
+                att: 'title',
+            }
+            },
+
+            computed: {
+                aboutMe() {
+                    return `저의 나이는 ${this.age}입니다.`
+                }
+            },
+            
+            methods: {
+                // add: function () {
+
+                // }
+                addAge() {
+                    this.age++;
+                },
+            },
+
+            created() {
+                this.age = 10;
+                console.log('인스턴스 만들고 돔 연결 직전!!')
+            },
+
+            mounted() {
+                console.log('마운트 된 후')
+            }
+        });
+        instance.mount('#app'); // mount = 담당할 화면 영역 설정
+        
+        console.log(instance);
+    </script>
+</body>
+</html>

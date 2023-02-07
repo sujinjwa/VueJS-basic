@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>뷰 이벤트</h1>
+        <h2>이벤트로 할일</h2>
+        <button v-on:click="increase(4)">더하기</button>
+        <button v-on:click="decrease(4)">빼기</button>
+        <p>결과: {{ counter }}</p>
+        <input type="text" v-model="myName" />
+        <p>{{ showName }}</p>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    counter: 10,
+                    myName: '',
+                };
+            },
+
+            watch: {
+                myName(newData, oldData) {
+                    if (newData === '수진') {
+                        console.log("You're sujin Jo");
+                    }
+                }
+            },
+            
+            computed: {
+                showName() {
+                    console.log('실행됐음!');
+                    if (this.myName === '') return '';
+                    return '정' + this.myName;
+                },
+            },
+
+            methods: {
+                setName(event) {
+                    this.myName = event.target.value;
+                },
+                increase(num) {
+                    this.counter += num;
+                },
+                decrease(num) {
+                    this.counter -= num;
+                },
+            },
+        }).mount('#app');
+    </script>
+</body>
+</html>

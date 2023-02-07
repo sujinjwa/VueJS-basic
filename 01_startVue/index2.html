@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 1) 당신의 이름이 나오도록 하세요. -->
+        <h1>{{ myName }}</h1>
+        <!-- 2) 당신의 나이가 나오도록 하세요. -->
+        <p>{{ myAge }}</p>
+        <!-- 3) methods로 당신의 나이에 + 5를 하세요. -->
+        <p>{{ calculateAge() }}</p>
+        <!-- 4) computed로 랜덤한 숫자를 보이게 하세요 (0 to 1) -->
+        <p>오늘의 숫자는: {{ getRandom }}</p>
+        
+        <!-- 5) 웹사이트에 있는 아무 이미지나 나오게 해보세요. -->
+        <img v-bind:src="myUrl" />
+
+        <!-- 6) 입력 필드에 이름을 'value' 속성을 이용해 사전에 입력해 주세요. -->
+        <input type="text" v-bind:value="myName" />
+    </div>
+    <script>
+        const instance = Vue.createApp({
+            data() {
+                return {
+                    myName: '조수진',
+                    myAge: 24,
+                    myUrl: '/pikachu.png',
+                    value: 'value',
+                }
+            },
+
+            computed: {
+                getRandom() {
+                    return Math.random() * 1;
+                }
+            },
+
+            methods: {
+                calculateAge() {
+                    return this.myAge + 5
+                }
+            }
+                
+        });
+        instance.mount('#app');
+    </script>
+</body>
+</html>
