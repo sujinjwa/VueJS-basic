@@ -149,13 +149,13 @@
       }
     ]
 
-    // const MENU_MATCH = {
-    //   '예매순': 'ticketing',
-    //   '평점순': 'score',
-    //   '개봉일순': 'openDate',
-    //   '주말관객순': 'week',
-    //   '다운로드순': 'sale',
-    // }
+    const MENU_MATCH = {
+      '예매순': 'ticketing',
+      '평점순': 'score',
+      '개봉일순': 'openDate',
+      '주말관객순': 'week',
+      '다운로드순': 'sale',
+    }
 
     Vue.createApp({
       data() {
@@ -169,32 +169,15 @@
       // 파라미터는 새로 바뀐 값, 기존 값 순으로 받기로 약속되어 있다
       watch: {
         movieContext(newCxt, oldCxt) {
-          // this.setOrder(newCxt);
-          switch(newCxt) {
-            case '예매순':
-              this.movies.sort((a, b) => b.ticketing - a.ticketing);
-              break;
-            case '평점순':
-              this.movies.sort((a, b) => b.score - a.score);
-              break;
-            case '개봉일순':
-              this.movies.sort((a, b) => b.openDate - a.openDate);
-                break;
-            case '주말관객순':
-              this.movies.sort((a, b) => b.week - a.week);
-                break;
-            case '다운로드순':
-              this.movies.sort((a, b) => b.sale - a.sale);
-                break;
-          }
+          this.setOrder(newCxt);
         }
       },
 
       methods: {
-        // setOrder(props) {
-        //   // props를 기준으로 영화 정렬
-        //   this.movies.sort((a, b) => b[props] = a[props]);
-        // },
+        setOrder(props) {
+          // props를 기준으로 영화 정렬
+          this.movies.sort((a, b) => b[props] = a[props]);
+        },
 
         setContext(event) {
           console.log(event.target);
@@ -208,12 +191,6 @@
         },
 
         setCurrentTab(liItem) {
-          // console.log(liItem.tagName);
-          // if (liItem.tagName !== 'LI') {
-          //   console.log('hh');
-          //   return;
-          // }
-
           // 전체 탭 빨간색 표시 초기화
           tabs = document.querySelectorAll('#tab');
           tabs.forEach(tab => tab.classList.remove('on'));
