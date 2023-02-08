@@ -71,3 +71,6 @@ body {background-color:#242424; }
 .movie > ol > li em.week_num {color:red}
 .movie > ol > li i.sale_title {font-weight: bold;}
 .movie > ol > li em.sale_num {color:red}
+.movie > .tab {text-align:center; font-size:16px}
+.movie > .tab > li {display:inline-block; margin:0 20px;}
+.movie > .tab > li.on a {color:red}
