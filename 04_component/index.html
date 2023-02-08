@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+</head>
+<style>
+    * {margin:0; padding:0}
+    li {list-style: none;}
+    body {padding:30px;}
+    .list {margin:20px 0;}
+    .list > li {width:200px; border:1px solid gray; padding:10px;}
+    .list > li > * {display:block}
+    .list > li > img {width:200px; margin-bottom:20px;}
+    .list > li > strong {font-size:20px; color:#666; margin-bottom:10px}
+    .list > li > span{margin-bottom:10px;}
+</style>
+<body>
+    <div id="app">
+        <h1>Sales Product</h1>
+        <ul class="list">
+            <product-list></product-list>
+        </ul>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {}
+            }
+        });
+        
+        app.component('product-list', {
+            template: `
+                        <li>
+                            <img src="images/mango.jpg" />
+                            <strong>천연 오가닉 사과칩</strong>
+                            <span>깨끗한 재료를 엄선하여 자연을 그대로 담았습니다.</span>
+                            <b>2,000원</b>
+                        </li>
+                    `
+        });
+
+        app.mount('#app');
+
+    </script>
+</body>
+</html>
